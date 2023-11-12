@@ -17,9 +17,9 @@ resource "azurerm_policy_definition" "AZPLCYD00001" {
 }
 
 ### Policy Assignment
-resource "azurerm_policy_assignment" "AZPLCYA00001" {
+resource "azurerm_subscription_policy_assignment" "AZPLCYA00001" {
   name                 = "Deny-Anonymous-PolicyAssignment-00001"
-  scope                = var.cust_scope
+  subscription_id      = var.cust_scope
   policy_definition_id =  azurerm_policy_definition.AZPLCYD00001.id
   display_name         = "Enforce Deny Anonymouse Access Policy for Storage Account"
   description          = "Enforce Deny Anonymouse Access Policy for Storage Account"
