@@ -1,4 +1,4 @@
-name: Azure Policy Governance
+name: Azure Policies
 on:
   workflow_dispatch:
 
