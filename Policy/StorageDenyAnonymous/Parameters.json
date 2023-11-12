@@ -1,11 +1,14 @@
 {
-    "allowedLocations": {
-        "type": "Array",
+    "effectType": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+            "Deny",
+            "Disabled"
+        ],
         "metadata": {
-            "displayName": "Allowed locations",
-            "description": "The list of locations that can be specified when deploying resources.",
-            "strongType": "location"
+            "displayName": "Effect",
+            "description": "Enable or disable the execution of the policy"
         }
-
     }
 }

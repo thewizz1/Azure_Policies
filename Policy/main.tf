@@ -1,52 +1,34 @@
+### Policy Definition
+resource "azurerm_policy_definition" "AZPLCYD00001" {
+  name                  = "Deny-Storage-AnonymouseAccess"
+  policy_type           = "Custom"
+  mode                  = "Indexed"
+  display_name          = "Deny-Storage-AnonymouseAccess"
   
-  resource "azurerm_policy_definition" "policy" {
-  name         = "CloudQuickLabs-Demo-Deny-Policy"
-  policy_type  = "Custom"
-  mode         = "Indexed"
-  display_name = "acceptance test policy definition"
-
-  metadata = <<METADATA
-    {
-    "category": "General"
-    }
-
-METADATA
-
-
-  policy_rule = <<POLICY_RULE
- {
-    "if": {
-      "not": {
-        "field": "location",
-        "in": "[parameters('allowedLocations')]"
-      }
-    },
-    "then": {
-      "effect": "audit"
-    }
+  lifecycle {
+	ignore_changes = [metadata]
   }
-POLICY_RULE
+  
+  metadata = file("Policy/StorageDenyAnonymous/Metadata.json")
+  
+  policy_rule = file("Policy/StorageDenyAnonymous/PolicyRule.json")
 
+  parameters = file("Policy/StorageDenyAnonymous/Parameters.json")
+}
+
+### Policy Assignment
+resource "azurerm_policy_assignment" "AZPLCYA00001" {
+  name                 = "Deny-Anonymous-PolicyAssignment-00001"
+  scope                = var.cust_scope
+  policy_definition_id =  azurerm_policy_definition.AZPLCYD00001.id
+  display_name         = "Enforce Deny Anonymouse Access Policy for Storage Account"
+  description          = "Enforce Deny Anonymouse Access Policy for Storage Account"
 
   parameters = <<PARAMETERS
- {
+  {
     "allowedLocations": {
-      "type": "Array",
-      "metadata": {
-        "description": "The list of allowed locations for resources.",
-        "displayName": "Allowed locations",
-        "strongType": "location"
-      }
+      "value": "Deny"
     }
   }
-PARAMETERS
-
-  }
-  
-  resource "azurerm_subscription_policy_assignment" "auditvms" {
-  name = "audit-vm-manageddisks"
-  subscription_id = var.cust_scope
-  policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/06a78e20-9358-41c9-923c-fb736d382a4d"
-  description = "Shows all virtual machines not using managed disks"
-  display_name = "Audit VMs without managed disks assignment"
-  }
+  PARAMETERS
+}
