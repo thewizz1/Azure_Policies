@@ -16,7 +16,7 @@ terraform {
 		organization = "CloudQuickLabs"
 
 		workspaces {
-			name = "AzureAKSLabs"
+			name = "Azure_Policy"
 		}
 	}
 }
