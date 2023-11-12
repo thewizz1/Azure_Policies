@@ -9,11 +9,11 @@ resource "azurerm_policy_definition" "AZPLCYD00001" {
 	ignore_changes = [metadata]
   }
   
-  metadata = file("Policy/StorageDenyAnonymous/Metadata.json")
+  metadata = file("../Policy/StorageDenyAnonymous/Metadata.json")
   
-  policy_rule = file("Policy/StorageDenyAnonymous/PolicyRule.json")
+  policy_rule = file("../Policy/StorageDenyAnonymous/PolicyRule.json")
 
-  parameters = file("Policy/StorageDenyAnonymous/Parameters.json")
+  parameters = file("../Policy/StorageDenyAnonymous/Parameters.json")
 }
 
 ### Policy Assignment
