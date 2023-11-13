@@ -6,7 +6,7 @@
             "equals": "Microsoft.Storage/storageAccounts"
         },
         {
-            "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+            "field": "Microsoft.Storage/storageAccounts/allowBlobPublicAccess",
             "notEquals": "true"
         }
     ]
