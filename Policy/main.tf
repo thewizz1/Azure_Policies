@@ -26,7 +26,7 @@ resource "azurerm_subscription_policy_assignment" "AZPLCYA00001" {
 
   parameters = <<PARAMETERS
   {
-    "allowedLocations": {
+    "effectType": {
       "value": "Deny"
     }
   }
