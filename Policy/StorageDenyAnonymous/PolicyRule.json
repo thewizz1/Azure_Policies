@@ -7,7 +7,7 @@
         },
         {
             "field": "Microsoft.Storage/storageAccounts/allowBlobPublicAccess",
-            "notEquals": "true"
+            "notEquals": "false"
         }
     ]
   },
