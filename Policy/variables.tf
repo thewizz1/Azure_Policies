@@ -1,5 +1,5 @@
 variable "cust_scope" {
-    default = "b048d332-b1ce-4168-95a8-0a48c288e4ef"
+    default = "/subscriptions/b048d332-b1ce-4168-95a8-0a48c288e4ef"
 }
 
 variable "policy_Affect" {
